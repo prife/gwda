@@ -694,6 +694,13 @@ func (wd *remoteWD) SiriOpenUrl(url string) (err error) {
 	return
 }
 
+func (wd *remoteWD) OpenSchemeUrl(url string) (err error) {
+	// [[FBRoute POST:@"/schemeURL"].withoutSession respondWithTarget:self action:@selector(handleOpenSchemeURL:)],
+	data := map[string]interface{}{"url": url}
+	_, err = wd.executePost(data, "/schemeURL")
+	return
+}
+
 func (wd *remoteWD) Orientation() (orientation Orientation, err error) {
 	// [[FBRoute GET:@"/orientation"] respondWithTarget:self action:@selector(handleGetOrientation:)]
 	var rawResp rawResponse

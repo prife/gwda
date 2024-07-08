@@ -555,6 +555,15 @@ func Test_remoteWD_SiriOpenUrl(t *testing.T) {
 	}
 }
 
+func Test_remoteWD_OpenSchemeUrl(t *testing.T) {
+	setup(t)
+
+	err := driver.OpenSchemeUrl("App-prefs:WIFI")
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
 func Test_remoteWD_Orientation(t *testing.T) {
 	setup(t)
 

@@ -920,10 +920,10 @@ func (wd *remoteWD) IsWdaHealthy() (healthy bool, err error) {
 	if rawResp, err = wd.executeGet("/health"); err != nil {
 		return false, err
 	}
-	if string(rawResp) != "I-AM-ALIVE" {
-		return false, nil
+	if bytes.Contains(rawResp, []byte("I-AM-ALIVE")) {
+		return true, nil
 	}
-	return true, nil
+	return false, nil
 }
 
 func (wd *remoteWD) WdaShutdown() (err error) {
